@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usagemntr-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usagemntr
+  template:
+    metadata:
+      labels:
+        app: usagemntr
+    spec:
+      containers:
+        - name: usagemntr
+          image: us.gcr.io/atomic-409916/usagemntr
+          ports:
+            - containerPort: 4004
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: usagemntr-cluster-serv
+spec:
+  type: ClusterIP
+  selector:
+    app: usagemntr
+  ports:
+  - name: usagemntr
+    protocol: TCP
+    port: 4004
+    targetPort: 4004
+          
+                

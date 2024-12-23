@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storagemgmt-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storagemgmt
+  template:
+    metadata:
+      labels:
+        app: storagemgmt
+    spec:
+      containers:
+        - name: storagemgmt
+          image: us.gcr.io/atomic-409916/storagemgmt
+          ports:
+            - containerPort: 4001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: storagemgmt-cluster-serv
+spec:
+  type: ClusterIP
+  selector:
+    app: storagemgmt
+  ports:
+  - name: storagemgmt
+    protocol: TCP
+    port: 4001
+    targetPort: 4001
+          
+                

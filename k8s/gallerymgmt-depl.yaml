@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gallerymgmt-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gallerymgmt
+  template:
+    metadata:
+      labels:
+        app: gallerymgmt
+    spec:
+      containers:
+        - name: gallerymgmt
+          image: us.gcr.io/atomic-409916/gallerymgmt
+          ports:
+            - containerPort: 4002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gallerymgmt-cluster-serv
+spec:
+  type: ClusterIP
+  selector:
+    app: gallerymgmt
+  ports:
+  - name: gallerymgmt
+    protocol: TCP
+    port: 4002
+    targetPort: 4002
+          
+                
