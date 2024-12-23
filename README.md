@@ -58,15 +58,8 @@ The goal of the project is to create a scalable and efficient photo gallery appl
    npm run dev
    ```
 
-5. **Access Application**: Access the photo gallery application via the provided URL. Register/login to explore the features and functionalities.
+5. **Access Application**: Access the video gallery application via the provided URL. Register/login to explore the features and functionalities.
 
-## Contributors
-
-- Hassaan Qaisar
-- Yasir Ghaffar
-- AbuBakr Javed
-- Rana Mahad
-- Umair Asim
 
 ## Acknowledgements
 
