@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logging-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logging
+  template:
+    metadata:
+      labels:
+        app: logging
+    spec:
+      containers:
+        - name: logging
+          image: us.gcr.io/atomic-409916/logging
+          ports:
+            - containerPort: 4003
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: logging-cluster-serv
+spec:
+  type: ClusterIP
+  selector:
+    app: logging
+  ports:
+  - name: logging
+    protocol: TCP
+    port: 4003
+    targetPort: 4003
+          
+                
